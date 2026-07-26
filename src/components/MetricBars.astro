@@ -1,0 +1,26 @@
+---
+type Props = {
+	title: string;
+	items: {
+		label: string;
+		value: number;
+		display: string;
+	}[];
+};
+
+const { title, items } = Astro.props;
+const maxValue = Math.max(...items.map((item) => item.value), 1);
+---
+
+<figure class="metric-plot">
+	<h3>{title}</h3>
+	{items.map((item) => (
+		<div class="metric-row">
+			<span>{item.label}</span>
+			<span class="metric-track" aria-hidden="true">
+				<span class="metric-fill" style={`width: ${(item.value / maxValue) * 100}%`}></span>
+			</span>
+			<span class="metric-value">{item.display}</span>
+		</div>
+	))}
+</figure>

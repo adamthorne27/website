@@ -1,0 +1,120 @@
+---
+import ArchitectureFlow from '../../components/ArchitectureFlow.astro';
+import EvidenceTable from '../../components/EvidenceTable.astro';
+import MetricBars from '../../components/MetricBars.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projects, type Project } from '../../data/portfolio';
+
+export function getStaticPaths() {
+	return projects.map((project) => ({
+		params: { slug: project.slug },
+		props: { project },
+	}));
+}
+
+type Props = {
+	project: Project;
+};
+
+const { project } = Astro.props;
+---
+
+<BaseLayout
+	title={`${project.title} — Adam Thorne`}
+	description={`${project.summary} Tech stack, metrics, implementation, evaluation, and limitations.`}
+	canonicalPath={`/projects/${project.slug}/`}
+>
+	<header class="project-hero">
+		<div class="shell">
+			<p class="eyebrow">{project.category}</p>
+			<h1>{project.title}</h1>
+			<p class="project-hero__summary">{project.summary}</p>
+		</div>
+	</header>
+
+	<article class="shell project-body">
+		<section>
+			<h2>Why</h2>
+			<div class="project-content"><p>{project.why}</p></div>
+		</section>
+
+		<section>
+			<h2>Tech stack</h2>
+			<div class="project-content">
+				<ul class="stack-list">
+					{project.stack.map((item) => <li>{item}</li>)}
+				</ul>
+			</div>
+		</section>
+
+		<section>
+			<h2>Key metrics</h2>
+			<div class="project-content">
+				<div class="metric-grid">
+					{project.metrics.map((metric) => (
+						<div class="metric-card">
+							<strong>{metric.value}</strong>
+							<span>{metric.label}</span>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<h2>What I built</h2>
+			<div class="project-content">
+				<ul class="evidence-list">
+					{project.contribution.map((item) => <li>{item}</li>)}
+				</ul>
+			</div>
+		</section>
+
+		<section>
+			<h2>How it works</h2>
+			<div class="project-content">
+				<ArchitectureFlow title={`${project.title} architecture`} stages={project.architecture} />
+			</div>
+		</section>
+
+		<section id="evaluation">
+			<h2>Evaluation</h2>
+			<div class="project-content">
+				<ul class="evidence-list">
+					{project.evaluation.map((item) => <li>{item}</li>)}
+				</ul>
+				{project.results.map((table) => <EvidenceTable table={table} />)}
+				{project.comparisons?.map((comparison) => (
+					<MetricBars title={comparison.title} items={comparison.items} />
+				))}
+			</div>
+		</section>
+
+		<section>
+			<h2>Limitations</h2>
+			<div class="project-content">
+				<ul class="evidence-list">
+					{project.limitations.map((item) => <li>{item}</li>)}
+				</ul>
+			</div>
+		</section>
+
+		<section>
+			<h2>Links and reproducibility</h2>
+			<div class="project-content">
+				<ul class="evidence-list">
+					{project.reproducibility.map((item) => <li>{item}</li>)}
+				</ul>
+				{project.links.length > 0 ? (
+					<ul class="project-links">
+						{project.links.map((link) => (
+							<li><a href={link.href}>{link.label}</a></li>
+						))}
+					</ul>
+				) : (
+					<p class="publication-note">Public source is not available yet.</p>
+				)}
+			</div>
+		</section>
+	</article>
+</BaseLayout>

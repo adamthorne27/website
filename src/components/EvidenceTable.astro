@@ -1,0 +1,27 @@
+---
+import type { MetricTable } from '../data/portfolio';
+
+type Props = {
+	table: MetricTable;
+};
+
+const { table } = Astro.props;
+---
+
+<div class="table-wrap" tabindex="0" role="region" aria-label={table.caption}>
+	<table>
+		<caption>{table.caption}</caption>
+		<thead>
+			<tr>
+				{table.columns.map((column) => <th scope="col">{column}</th>)}
+			</tr>
+		</thead>
+		<tbody>
+			{table.rows.map((row) => (
+				<tr>
+					{row.map((cell) => <td>{cell}</td>)}
+				</tr>
+			))}
+		</tbody>
+	</table>
+</div>
