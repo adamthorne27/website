@@ -1,0 +1,24 @@
+Shared encoder and drawing forecast for this portfolio
+
+The drawing is cropped to its ink, fitted into 20x20 pixels, and centered by ink mass in a 28x28 frame. A convolutional encoder produces 32 ReLU values. A classification head guesses the digit; a decoder predicts a possible completed image using that same state and the probabilities computed from it. All inference stays in the browser. The state cells show actual encoder values, with intensity scaled against fixed model reference ranges. Raw values are available by hover and in the disclosure.
+
+Training combines MNIST handwriting images with original UCI pen trajectories and genuine stroke prefixes. The included animated examples follow recorded training-writer pen trajectories. The forecast remains a possible final image. Classification scores are temperature-calibrated on validation images and partial pen trajectories; ambiguous results display a question mark and leading alternatives. Early strokes can support several different digits.
+
+MNIST source and mirror references:
+https://github.com/pytorch/vision/blob/main/torchvision/datasets/mnist.py
+
+Pen trajectories: E. Alpaydin and F. Alimoglu (1996), Pen-Based Recognition of Handwritten Digits, UCI Machine Learning Repository.
+https://doi.org/10.24432/C5MG6K
+Dataset page: https://archive.ics.uci.edu/dataset/81/pen+based+recognition+of+handwritten+digits
+License: Creative Commons Attribution 4.0 (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+Encoder: Conv 1->8, ReLU, max pool; Conv 8->16, ReLU, max pool; Linear 784->96->32, ReLU
+Classification head: 32->10, calibrated softmax
+Completion decoder: 42->256->784, ReLU then sigmoid
+Decoder input: 32 encoder values plus 10 classification probabilities from that state
+Training: 20 joint epochs and 8 decoder refinement epochs; CPU; seed 73; affine augmentation; real partial pen trajectories
+Held-out full pen-writer classification: 97.34%; full MNIST classification: 98.37%. These checks do not establish accuracy on every visitor's handwriting.
+The demo is separate from the portfolio's research and experience.
+
+The value explorer lets a visitor change any of the 32 nonnegative encoder values. The same trained classifier and decoder run again on the edited state, including newly computed class probabilities. The input strokes are preserved; Restore drawing values restores the entire original encoder state. The slider spans zero to 1.5 times that value's model reference scale (or 1.5 times its original activation, if larger). Edited states are exploratory and need not correspond to plausible handwriting or carry the original validation performance.

@@ -1,5 +1,7 @@
 # build output
 dist/
+site-downloads/
+mockup-downloads/
 # generated types
 .astro/
 

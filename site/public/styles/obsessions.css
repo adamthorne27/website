@@ -1,0 +1,39 @@
+.obsessions-page .page{margin-bottom:30px}
+.obsessions-page .obsessions-intro{padding:49px 0 45px;border-bottom:1px solid var(--line)}
+.obsession-kicker{font:11px/1.6 var(--mono);color:var(--accent);letter-spacing:.04em}
+.obsessions-intro h1{font-size:clamp(48px,6.3vw,80px);font-weight:600;line-height:1.05;letter-spacing:-.035em;margin-top:21px;max-width:860px;text-wrap:balance}
+.obsessions-intro>.text-link{margin-top:17px}
+.technical-obsession{display:grid;grid-template-columns:1fr 1.18fr;align-items:center;gap:65px;padding:58px 0 69px}
+.obsession-copy h2{font-size:clamp(39px,4.5vw,56px);line-height:1.12;letter-spacing:-.025em;margin:19px 0 25px;font-weight:600}
+.obsession-copy>p:not(.obsession-kicker){font-size:16px;line-height:1.8;max-width:410px;margin:15px 0}
+.obsession-copy>.text-link{margin-top:15px;font-size:13px}
+.model-notes{font-size:13px;line-height:1.7;margin-top:23px;max-width:410px}
+.model-notes summary{cursor:pointer;padding:9px 0;min-height:44px;color:var(--accent)}
+.model-notes p{font-size:14px;line-height:1.8;margin:13px 0;color:var(--muted)}
+.obsessions-page .digit-heading h3{font-size:22px;font-weight:500;line-height:1.2}
+.personal-obsessions{padding:50px 0 65px;border-top:1px solid var(--line)}
+.personal-notes{display:grid;grid-template-columns:1.1fr 1fr;gap:25px 35px;padding:5px 3px 0;align-items:stretch}
+.personal-note{position:relative;min-width:0;border:1px solid var(--line);background:var(--sheet);box-shadow:4px 5px 0 #dad4c2;padding:27px 29px}
+.personal-note::before{content:'';position:absolute;top:-9px;left:28px;width:65px;height:22px;background:#d6bc92;opacity:.6;transform:rotate(-6deg);pointer-events:none}
+.personal-note h3{font-size:32px;line-height:1.18;letter-spacing:-.015em;font-weight:600;margin-top:11px}
+.personal-note.running-note{grid-row:1/4;align-self:center;background:#e2e8d6;transform:rotate(-1.5deg);padding-block:34px}
+.running-note h3{font-size:48px;margin-top:17px}
+.running-note .text-link{font-size:13px;margin:11px 0 27px}
+.running-note iframe{display:block;border:0;width:300px;max-width:100%;height:160px}
+.personal-note.watching-note{background:#efd6c8;transform:rotate(1deg)}
+.personal-note.listening-note{transform:rotate(-1deg)}
+.personal-note.podcast-note{background:#ebe5d4;transform:rotate(1.4deg)}
+.obsession-archive{padding:49px 0 55px;border-top:1px solid var(--line)}
+.archive-entry{display:grid;grid-template-columns:30px minmax(0,1fr) auto 25px;align-items:center;gap:28px;border-top:1px solid var(--ink);border-bottom:1px solid var(--line);padding:24px 0}
+.entry-number{font:12px var(--mono);color:var(--accent)}
+.entry-name{font:500 26px/1.3 var(--display)}
+.entry-name small{display:block;font:12px/1.7 var(--body);margin-top:7px;color:var(--muted)}
+.entry-date{font:11px/1.7 var(--mono);text-align:right;color:var(--muted)}
+.entry-date small{display:block;font:10px/1.7 var(--mono);margin-top:5px;color:var(--accent)}
+.entry-arrow{font-size:24px;text-align:right}
+.archive-entry:hover .entry-name,.archive-entry:hover .entry-arrow{color:var(--accent)}
+.archive-note{font:11px/1.8 var(--mono);color:var(--muted);margin-top:19px}
+.obsessions-page .site-footer{padding-bottom:30px}
+@media(max-width:1100px){.technical-obsession{gap:37px;grid-template-columns:1fr 1.2fr}.obsession-copy h2{font-size:43px}.personal-notes{gap:24px}.personal-note{padding-inline:23px}.personal-note h3{font-size:29px}.running-note h3{font-size:44px}.archive-entry{gap:20px}}
+@media(max-width:760px){.obsessions-page .obsessions-intro{padding:34px 0 32px}.obsessions-intro h1{font-size:clamp(39px,8.8vw,62px);letter-spacing:-.025em}.obsession-kicker{font-size:10px}.technical-obsession{grid-template-columns:1fr;gap:36px;padding:36px 0 49px}.obsession-copy h2{font-size:43px;margin-top:15px}.obsession-copy>p:not(.obsession-kicker),.model-notes{max-width:560px}.obsessions-page .digit-heading h3{font-size:22px}.personal-obsessions{padding:38px 0 45px}.personal-notes{grid-template-columns:1fr;gap:28px}.personal-note.running-note{grid-row:auto;transform:rotate(-1deg)}.personal-note{padding:25px}.personal-note h3{font-size:30px}.running-note h3{font-size:43px}.obsession-archive{padding:37px 0 36px}.archive-entry{grid-template-columns:24px 1fr 20px;gap:16px;padding:22px 0}.entry-name{font-size:24px}.entry-name small{font-size:12px}.entry-date{grid-column:2;text-align:left;display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}.entry-date small{margin-top:0}.entry-arrow{grid-column:3;grid-row:1/3}.archive-note{font-size:10px}.obsessions-page .site-footer>span{max-width:none}.obsessions-page .site-footer>a:first-child{font:11px var(--body);min-height:44px;display:flex;align-items:center}}
+@media(max-width:390px){.personal-note{padding-inline:17px}.obsessions-intro h1{font-size:38px}.obsessions-page .site-header nav{gap:13px}}

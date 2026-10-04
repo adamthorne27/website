@@ -1,0 +1,47 @@
+---
+type Props = {
+	title: string;
+	description: string;
+	obsessions?: boolean;
+};
+
+const { title, description, obsessions = false } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const previewImageUrl = new URL('/portfolio-preview-2026-10.jpg', Astro.site);
+const previewImageAlt = "Adam Thorne's paper-and-tape portfolio with an interactive encoder drawing demo";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#f5efe2" />
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Adam Thorne" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={previewImageUrl} />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:width" content="1280" />
+		<meta property="og:image:height" content="1208" />
+		<meta property="og:image:alt" content={previewImageAlt} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={previewImageUrl} />
+		<meta name="twitter:image:alt" content={previewImageAlt} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="stylesheet" href="/styles/site.css" />
+		{obsessions && <link rel="stylesheet" href="/styles/obsessions.css" />}
+		<script is:inline src="/scripts/digit-model.js" defer></script>
+		<script is:inline src="/scripts/drawing-demo.js" defer></script>
+		<title>{title}</title>
+	</head>
+	<body class:list={['paper-portfolio', { 'obsessions-page': obsessions }]}>
+		<slot />
+	</body>
+</html>
