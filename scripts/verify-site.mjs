@@ -12,8 +12,9 @@ async function filesUnder(directory) {
 }
 
 const routes = ['index.html', 'obsessions/index.html', 'obsessions/autoencoders/index.html'];
+const standaloneRoute = '68-61-70-70-79-20-61-6e-6e-69-76-65-72-73-61-72-79/index.html';
 const files = (await filesUnder('dist')).map((file) => path.relative('dist', file));
-assert.deepEqual(files.filter((file) => file.endsWith('.html')).sort(), [...routes].sort(), 'Only the approved pages belong in the upload');
+assert.deepEqual(files.filter((file) => file.endsWith('.html')).sort(), [...routes, standaloneRoute].sort(), 'Only the approved pages belong in the upload');
 assert.deepEqual(files.filter((file) => file.endsWith('.pdf')), ['Adam_Thorne_PINN_Paper.pdf'], 'Do not publish the private resume');
 assert.ok(!files.some((file) => /^(mockup|designs|projects)\//.test(file)), 'Design previews must stay outside the upload');
 
@@ -78,4 +79,4 @@ const obsessions = pages.get('obsessions/index.html');
 for (const interest of ['Running', 'Dexter', 'Tyler Childers', 'Darknet Diaries']) assert.ok(obsessions.includes(interest), `Missing personal interest: ${interest}`);
 assert.ok(obsessions.includes('https://www.strava.com/athletes/142209134/activity-summary/9fb6c3df8173b7d7711161aa1cb786447bfbd87f'), 'Keep the supplied Strava summary');
 
-console.log('Standalone site verified: three pages, working local links, intact demo, and no design previews or private resume.');
+console.log('Standalone site verified: three portfolio pages plus the isolated page, working local links, intact demo, and no design previews or private resume.');
